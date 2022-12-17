@@ -21,6 +21,10 @@ module.exports = class RestManager {
                 }
             }).catch(reject);
             const responce = await result.json();
+            if(result.status==401) {
+                console.warn('Token is invalid or expired!');
+                return reject(responce);
+            }
             if(!result.ok||result.status!==200) return reject(responce);
             return resolve(responce);
         })

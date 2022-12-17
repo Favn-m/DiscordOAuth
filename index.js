@@ -2,11 +2,13 @@ const Application = require("./classes/application/Application");
 const Client = require("./classes/application/Client");
 const User = require("./classes/structures/User");
 
-let app = new Application({clientId: '1'});
+let app = new Application({clientId: 'clientId'});
 
-let client = new Client(app, {token: 'jMatgPAOUh1JrOoBUVxWaR44V3xRN1'});
+// app.clients.
 
-// async function main(){
-    (new User(client, {})).fetch().then(user=>user.guilds.fetch()).then(console.log);
-// }
-// main();
+async function main(){
+    const client = await app.getClient('-');
+    console.log("Client created");
+    console.log(await client.fetchUser());
+}
+main();

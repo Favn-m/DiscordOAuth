@@ -41,7 +41,7 @@ class UserGuildManager extends CachedManager{
             this.cache.data = cached;
             return cached;
         } catch(e){
-            console.log(e);
+            console.log("Error fetching UserGuild(s):", e);
         }
     }
 }

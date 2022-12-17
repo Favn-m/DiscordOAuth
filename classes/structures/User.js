@@ -16,7 +16,7 @@ class User extends CachedStructure{
      * @param {Client} client 
      * @param {userSchema} data 
      */
-    constructor(client, data){
+    constructor(client, data={}){
         super(client.application, User);
         this.client = client;
         this.application = client.application;
@@ -55,17 +55,22 @@ class User extends CachedStructure{
      * @returns {Promise<this>}
      */
     async fetch(force = false){
-        if((!force&&this.cache.expires>=Date.now())&&this.cache.data) return this.cache.data;
-        try{
-            const result = await this.client.rest.get(Routes.user('@me'));
-            this.cache.expires = Date.now() + this.application.cacheLifeTime;
-            this.cache.data = result;
+        console.log('Date: ', this.cache.expires, Date.now());
+        if((!force&&this.cache.expires>=Date.now())&&this.cache.data) return this;
+        return new Promise(async (resolve, reject)=> {
+            try{
+                this.cache.expires = Date.now() + this.application.cacheLifeTime;
+                const result = await this.client.rest.get(Routes.user('@me'));
+                this.cache.data = result;
 
-            this.#patch(result)
-            return this;
-        } catch(e){
-            console.log(e);
-        }
+                console.log("User fetching result: ", result);
+
+                this.#patch(result)
+                return resolve(this);
+            } catch(e){
+                reject(e);
+            }
+        });
     }
 
     /**
