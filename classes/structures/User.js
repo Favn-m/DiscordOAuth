@@ -21,7 +21,7 @@ class User extends CachedStructure{
         this.client = client;
         this.application = client.application;
 
-        this.#guilds = new UserGuildManager(client, [])
+        this.#guilds = new UserGuildManager(client, []);
 
         this.id = data.id;
 

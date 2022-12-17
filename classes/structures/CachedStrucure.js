@@ -18,7 +18,7 @@ class CachedStructure{
     constructor(application, holds){
         this.application = application;
 
-        this.#cache = { expires: Date.now()+this.application.cacheLifeTime, data: null };
+        this.#cache = { expires: Date.now()+this.application.cacheLifeTime };
 
         if(holds) Object.defineProperty(this, '_holds', holds)
     }
