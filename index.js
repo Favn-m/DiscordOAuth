@@ -1,14 +1,10 @@
 const Application = require("./classes/application/Application");
+const Client = require("./classes/application/Client");
+const RestManager = require("./classes/util/RestManager");
+const Routes = require("./classes/util/Routes");
 
-let app = new Application({clientId: 'clientId'});
+exports.Application = Application;
+exports.Client = Client;
 
-async function main(){
-    try{
-        const client = await app.getClient('authToken');
-        console.log("Client created");
-        console.log(await client.fetchUser());
-    } catch(e){
-        console.log(e);
-    }
-}
-main();
+exports.RestManager = RestManager;
+exports.Routes = Routes;
