@@ -13,7 +13,7 @@ module.exports = class RestManager {
     async get(path, params){
         path = this.resolvePath(path);
         params = this.resolveParams(params);
-
+        console.log(path);
         return new Promise(async (resolve, reject)=>{
             const result = await fetch(path+params.toString(), {
                 headers: {

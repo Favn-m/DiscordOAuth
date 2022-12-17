@@ -33,10 +33,13 @@ module.exports = class Client{
         if(!this.#user) this.#user = new User(this, {});
         const result = await this.#user.fetch(force);
         this.#user = result;
-        if(withGuilds) await this.#user.fetchGuilds(true);
+        if(withGuilds) await this.#user.fetchGuilds(force);
         return result;
     }
 
+    /**
+     * @return {User} user of this client
+     */
     get user(){
         return this.#user;
     }
