@@ -56,12 +56,11 @@ class User extends CachedStructure{
      */
     async fetch(force = false){
         console.log('Date: ', this.cache.expires, Date.now());
-        if((!force&&this.cache.expires>=Date.now())&&this.cache.data) return this;
+        if((!force&&this.cache.expires>=Date.now())&&this.id) return this;
         return new Promise(async (resolve, reject)=> {
             try{
                 this.cache.expires = Date.now() + this.application.cacheLifeTime;
                 const result = await this.client.rest.get(Routes.user('@me'));
-                this.cache.data = result;
 
                 console.log("User fetching result: ", result);
 
