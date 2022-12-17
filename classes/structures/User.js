@@ -55,7 +55,6 @@ class User extends CachedStructure{
      * @returns {Promise<this>}
      */
     async fetch(force = false){
-        console.log('Date: ', this.cache.expires, Date.now());
         if((!force&&this.cache.expires>=Date.now())&&this.id) return this;
         return new Promise(async (resolve, reject)=> {
             try{
@@ -64,7 +63,7 @@ class User extends CachedStructure{
 
                 console.log("User fetching result: ", result);
 
-                this.#patch(result)
+                this.#patch(result);
                 return resolve(this);
             } catch(e){
                 reject(e);

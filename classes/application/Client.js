@@ -27,7 +27,6 @@ module.exports = class Client{
         this.rest = new RestManager(this.token);
 
         this.#user = new User(this);
-        this.fetchUser({force: true});
     }
 
     async fetchUser({force=false, withGuilds=true}={}){

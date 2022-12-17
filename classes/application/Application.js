@@ -23,6 +23,11 @@ module.exports = class Application{
         return this.#clients;
     }
 
+    /**
+     * 
+     * @param {String} token 
+     * @returns {Promise<Client>}
+     */
     async createClient(token){
         return new Promise(async (resolve, reject)=>{
             const result = new Client(this, {token: token});
@@ -40,7 +45,7 @@ module.exports = class Application{
      * 
      * @param {String} token 
      * @param {{createIfNotExists: boolean}} param1 
-     * @returns {Client}
+     * @returns {Promise<Client>|Client}
      */
     async getClient(token, {createIfNotExists = true}={}){
         return this.#clients.cache.data.get(token) ?? createIfNotExists ? await this.createClient(token) : null;

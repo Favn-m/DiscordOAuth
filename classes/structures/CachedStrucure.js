@@ -26,7 +26,6 @@ class CachedStructure{
     /**
      * @typedef cache
      * @property {EpochTimeStamp} expires
-     * @property {T} data
      */
     
     /**
