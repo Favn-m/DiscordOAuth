@@ -8,20 +8,3 @@ exports.Client = Client;
 
 exports.RestManager = RestManager;
 exports.Routes = Routes;
-
-
-let app = new Application({clientId: 'clientId'});
-
-async function main(){
-    try{
-        const client = await app.getClient('jMatgPAOUh1JrOoBUVxWaR44V3xRN1');
-        console.log("Client created");
-        console.log(await client.fetchUser());
-        // setTimeout(async () => {
-        //     console.log(await client.user.fetchGuilds())
-        // }, 2000);
-    } catch(e){
-        console.log(e);
-    }
-}
-main();
