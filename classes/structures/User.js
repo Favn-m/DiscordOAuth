@@ -61,8 +61,6 @@ class User extends CachedStructure{
                 this.cache.expires = Date.now() + this.application.cacheLifeTime;
                 const result = await this.client.rest.get(Routes.user('@me'));
 
-                console.log("User fetching result: ", result);
-
                 this.#patch(result);
                 return resolve(this);
             } catch(e){
