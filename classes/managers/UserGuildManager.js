@@ -2,7 +2,6 @@ const CachedManager = require("./CachedManager");
 const Guild = require('../structures/Guild');
 const { Collection } = require("@discordjs/collection");
 const Routes = require("../util/Routes");
-const RestManager = require("../util/RestManager");
 const Client = require("../application/Client");
 
 module.exports = 
@@ -26,6 +25,11 @@ class UserGuildManager extends CachedManager{
     }
 
 
+    /**
+     * 
+     * @param {Promise<Collection<Guild>>} force 
+     * @returns All guilds from this user
+     */
     async fetch(force = false){
         if(!force&&this.cache.expires>=Date.now()&&this.cache.data.size>0) return this.cache.data;
         try{

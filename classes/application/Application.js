@@ -7,10 +7,11 @@ module.exports = class Application{
      */
     #clients;
 
-    constructor({cacheLifeTime = 60*1000, clientId, secret}={}){
+    constructor({cacheLifeTime = 60*1000, restDebug=false, clientId, secret}={}){
         this.cacheLifeTime = cacheLifeTime;
         this.clientId = clientId;
         this.secret = secret;
+        this.restDebug = restDebug;
 
         this.#clients = new ApplicationClientManager(this);
     }

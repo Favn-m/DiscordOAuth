@@ -1,8 +1,15 @@
 const Routes = require("./Routes");
 
 module.exports = class RestManager {
-    constructor(token){
+    #debug;
+    /**
+     * 
+     * @param {String} token 
+     * @param {boolean} debug 
+     */
+    constructor(token, debug){
         this.token = token;
+        this.#debug = debug;
     }
 
     /**
@@ -13,7 +20,8 @@ module.exports = class RestManager {
     async get(path, params){
         path = this.resolvePath(path);
         params = this.resolveParams(params);
-        console.log(path);
+        if(this.#debug) console.log(path);
+        
         return new Promise(async (resolve, reject)=>{
             const result = await fetch(path+params.toString(), {
                 headers: {

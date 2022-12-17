@@ -1,5 +1,6 @@
 const User = require("../structures/User");
 const RestManager = require("../util/RestManager");
+const Application = require("./Application");
 
 module.exports = class Client{
     /**
@@ -13,6 +14,7 @@ module.exports = class Client{
      */
 
     /**
+     * @param {Application} application
      * @param {ClientOptions} options 
      */
     constructor(application, options){
@@ -24,7 +26,7 @@ module.exports = class Client{
          * RestManager for this Client
          * @type {RestManager}
          */
-        this.rest = new RestManager(this.token);
+        this.rest = new RestManager(this.token, application.restDebug);
 
         this.#user = new User(this);
     }
